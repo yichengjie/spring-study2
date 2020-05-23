@@ -64,5 +64,7 @@ public class AnnotationParser {
         //parseTypeAnnotation();
         parseFieldAnnotation();
         //parseMethodAnnotation();
+        //ImoocCourse course = new ImoocCourse() ;
+        //course.getCourseInfo();
     }
 }
