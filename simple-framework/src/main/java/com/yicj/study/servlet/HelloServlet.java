@@ -3,7 +3,6 @@ package com.yicj.study.servlet;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +17,7 @@ import java.io.IOException;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-@WebServlet("/hello")
+//@WebServlet("/hello")
 @Slf4j
 public class HelloServlet extends HttpServlet {
     //private Logger log = LoggerFactory.getLogger(this.getClass()) ;
