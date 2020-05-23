@@ -1,4 +1,6 @@
-package com.yicj.study;
+package com.yicj.study.servlet;
+
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,11 +19,13 @@ import java.io.IOException;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @WebServlet("/hello")
+@Slf4j
 public class HelloServlet extends HttpServlet {
-
+    //private Logger log = LoggerFactory.getLogger(this.getClass()) ;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = "我的简易框架" ;
+        log.debug(name);
         req.setAttribute("name", name);
         req.getRequestDispatcher("/WEB-INF/jsp/hello.jsp").forward(req,resp);
     }

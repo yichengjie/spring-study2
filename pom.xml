@@ -11,7 +11,7 @@
         <module>simple-framework</module>
         <module>pattern-study</module>
     </modules>
-    <packaging>pom</packaging>
+     <packaging>pom</packaging>
 
 
 </project>
