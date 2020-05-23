@@ -33,7 +33,7 @@
     </dependencies>
 
     <build>
-        <finalName>simpleframework</finalName>
+        <finalName>simple-framework</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -50,10 +50,9 @@
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
                     <configuration>
-                        <path>/simpleframework</path>
+                        <path>/${artifactId}</path>
                     </configuration>
                 </plugin>
-
             </plugins>
         </pluginManagement>
     </build>
