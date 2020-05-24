@@ -3,11 +3,13 @@ package com.yicj.study.controller.superadmin;
 import com.yicj.study.entity.bo.ShopCategory;
 import com.yicj.study.entity.dto.Result;
 import com.yicj.study.service.solo.ShopCategoryService;
+import org.simpleframework.core.annotation.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+@Controller
 public class ShopCategoryOperationController {
     private ShopCategoryService shopCategoryService;
 

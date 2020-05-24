@@ -3,6 +3,7 @@ package com.yicj.study.controller.superadmin;
 import com.yicj.study.entity.bo.HeadLine;
 import com.yicj.study.entity.dto.Result;
 import com.yicj.study.service.solo.HeadLineService;
+import org.simpleframework.core.annotation.Controller;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
+@Controller
 public class HeadLineOperationController {
 
     private HeadLineService headLineService;

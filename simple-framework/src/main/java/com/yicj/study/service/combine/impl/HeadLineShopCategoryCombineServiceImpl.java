@@ -7,9 +7,11 @@ import com.yicj.study.entity.dto.Result;
 import com.yicj.study.service.combine.HeadLineShopCategoryCombineService;
 import com.yicj.study.service.solo.HeadLineService;
 import com.yicj.study.service.solo.ShopCategoryService;
+import org.simpleframework.core.annotation.Service;
 
 import java.util.List;
 
+@Service
 public class HeadLineShopCategoryCombineServiceImpl implements HeadLineShopCategoryCombineService {
     private HeadLineService headLineService;
     private ShopCategoryService shopCategoryService;
