@@ -1,4 +1,4 @@
-package com.yicj.annotation.proxy.client;
+package com.yicj.study.proxy.client;
 
 
 /**

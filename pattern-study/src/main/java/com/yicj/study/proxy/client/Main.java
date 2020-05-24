@@ -1,8 +1,9 @@
-package com.yicj.annotation.proxy.client;
+package com.yicj.study.proxy.client;
 
-import com.yicj.annotation.proxy.client.component.MyHelloInvocationHandler;
-import com.yicj.annotation.proxy.client.component.MyHelloInvocationHandler2;
-import com.yicj.annotation.proxy.client.dynamic.HelloProxy;
+
+import com.yicj.study.proxy.component.MyHelloInvocationHandler;
+import com.yicj.study.proxy.component.MyHelloInvocationHandler2;
+import com.yicj.study.proxy.proxy.HelloProxy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class Main {
 
     public static void test1(){
         Hello hello = new HelloImpl() ;
-        HelloProxy helloProxy = new HelloProxy(new MyHelloInvocationHandler(hello)) ;
+        Hello helloProxy = new HelloProxy(new MyHelloInvocationHandler(hello)) ;
         String retObj = helloProxy.hello1();
         System.out.println("retObj : " + retObj);
     }

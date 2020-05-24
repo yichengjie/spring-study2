@@ -1,6 +1,7 @@
-package com.yicj.annotation.proxy.client.component;
+package com.yicj.study.proxy.component;
 
-import com.yicj.annotation.proxy.HelloInvocationHandler;
+import com.yicj.study.proxy.HelloInvocationHandler;
+
 import java.lang.reflect.Method;
 import java.util.Map;
 

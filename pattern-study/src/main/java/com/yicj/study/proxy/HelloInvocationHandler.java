@@ -1,4 +1,4 @@
-package com.yicj.annotation.proxy;
+package com.yicj.study.proxy;
 
 import java.lang.reflect.Method;
 

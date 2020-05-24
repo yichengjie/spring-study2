@@ -1,7 +1,8 @@
-package com.yicj.annotation.proxy.client.dynamic;
+package com.yicj.study.proxy.proxy;
 
-import com.yicj.annotation.proxy.HelloInvocationHandler;
-import com.yicj.annotation.proxy.client.Hello;
+
+import com.yicj.study.proxy.HelloInvocationHandler;
+import com.yicj.study.proxy.client.Hello;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.UndeclaredThrowableException;
@@ -52,8 +53,8 @@ public class HelloProxy implements Hello {
 
     static {
         try {
-            m0 = Class.forName("com.yicj.annotation.proxy.client.Hello").getMethod("hello1") ;
-            m1 = Class.forName("com.yicj.annotation.proxy.client.Hello").getMethod("hello2") ;
+            m0 = Class.forName("com.yicj.study.proxy.client.Hello").getMethod("hello1") ;
+            m1 = Class.forName("com.yicj.study.proxy.client.Hello").getMethod("hello2") ;
         }catch (NoSuchMethodException var2) {
             throw new NoSuchMethodError(var2.getMessage());
         } catch (ClassNotFoundException var3) {
