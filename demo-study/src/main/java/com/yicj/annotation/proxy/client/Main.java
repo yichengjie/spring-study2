@@ -1,5 +1,8 @@
 package com.yicj.annotation.proxy.client;
 
+import com.yicj.annotation.proxy.client.component.MyHelloInvocationHandler2;
+import com.yicj.annotation.proxy.client.dynamic.HelloProxy;
+
 /**
  * ClassName: Main
  * Description: TODO(描述)
@@ -15,7 +18,7 @@ public class Main {
 
         Hello hello = new HelloImpl() ;
 
-        HelloProxy helloProxy = new HelloProxy(hello, new MyHelloInvocationHandler()) ;
+        HelloProxy helloProxy = new HelloProxy(hello, new MyHelloInvocationHandler2()) ;
 
         String retObj = helloProxy.hello1();
 

@@ -1,6 +1,7 @@
-package com.yicj.annotation.proxy.client;
+package com.yicj.annotation.proxy.client.dynamic;
 
 import com.yicj.annotation.proxy.HelloInvocationHandler;
+import com.yicj.annotation.proxy.client.Hello;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.UndeclaredThrowableException;

@@ -1,4 +1,4 @@
-package com.yicj.annotation.proxy.client;
+package com.yicj.annotation.proxy.client.component;
 
 import com.yicj.annotation.proxy.HelloInvocationHandler;
 
@@ -13,12 +13,13 @@ import java.lang.reflect.Method;
  * 修改记录
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
-public class MyHelloInvocationHandler implements HelloInvocationHandler {
+public class MyHelloInvocationHandler2 implements HelloInvocationHandler {
     @Override
     public Object invoke(Object target, Method method, Object[] params) throws Throwable{
-        System.out.println("----before -------");
+        long start = System.currentTimeMillis();
         Object ret = method.invoke(target, params) ;
-        System.out.println("----before -------");
+        long end = System.currentTimeMillis();
+        System.out.println(method.getName() + " exe take time : " + (end - start));
         return ret;
     }
 }
