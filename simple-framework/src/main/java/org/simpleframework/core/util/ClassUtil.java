@@ -4,12 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * ClassName: ClassUtils
+ * ClassName: ClassUtil
  * Description: TODO(描述)
  * Date: 2020/5/24 11:42
  *
@@ -18,7 +19,7 @@ import java.util.Set;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Slf4j
-public class ClassUtils {
+public class ClassUtil {
 
     public static final String FILE_PROTOCOL = "file";
 
@@ -107,6 +108,25 @@ public class ClassUtils {
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
             log.error("load class error:", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 实例化class
+     *
+     * @param clazz Class
+     * @param <T>   class的类型
+     * @param accessible   是否支持创建出私有class对象的实例
+     * @return 类的实例化
+     */
+    public static <T> T newInstance(Class<?> clazz, boolean accessible){
+        try {
+            Constructor constructor = clazz.getDeclaredConstructor();
+            constructor.setAccessible(accessible);
+            return (T)constructor.newInstance();
+        } catch (Exception e) {
+            log.error("newInstance error", e);
             throw new RuntimeException(e);
         }
     }

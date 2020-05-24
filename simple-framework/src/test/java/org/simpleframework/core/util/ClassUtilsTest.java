@@ -22,7 +22,7 @@ public class ClassUtilsTest {
     @Test
     public void testExtractPackageClass(){
         String packageName = "com.yicj.study.entity" ;
-        Set<Class<?>> classes = ClassUtils.extractPackageClass(packageName);
+        Set<Class<?>> classes = ClassUtil.extractPackageClass(packageName);
         System.out.println(classes);
         Assertions.assertEquals(4, classes.size());
     }
