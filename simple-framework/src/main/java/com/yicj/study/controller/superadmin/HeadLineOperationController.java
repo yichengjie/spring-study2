@@ -4,6 +4,7 @@ import com.yicj.study.entity.bo.HeadLine;
 import com.yicj.study.entity.dto.Result;
 import com.yicj.study.service.solo.HeadLineService;
 import org.simpleframework.core.annotation.Controller;
+import org.simpleframework.core.inject.annotation.Autowired;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @Controller
 public class HeadLineOperationController {
 
+    @Autowired
     private HeadLineService headLineService;
 
 

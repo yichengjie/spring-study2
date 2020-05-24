@@ -8,12 +8,15 @@ import com.yicj.study.service.combine.HeadLineShopCategoryCombineService;
 import com.yicj.study.service.solo.HeadLineService;
 import com.yicj.study.service.solo.ShopCategoryService;
 import org.simpleframework.core.annotation.Service;
+import org.simpleframework.core.inject.annotation.Autowired;
 
 import java.util.List;
 
 @Service
 public class HeadLineShopCategoryCombineServiceImpl implements HeadLineShopCategoryCombineService {
+    @Autowired
     private HeadLineService headLineService;
+    @Autowired
     private ShopCategoryService shopCategoryService;
     @Override
     public Result<MainPageInfoDTO> getMainPageInfo() {
