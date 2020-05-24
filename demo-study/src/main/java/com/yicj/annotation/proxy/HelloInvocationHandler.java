@@ -13,5 +13,5 @@ import java.lang.reflect.Method;
  */
 public interface HelloInvocationHandler {
 
-    Object invoke(Object target, Method method, Object [] params) throws Throwable;
+    Object invoke(Method method, Object [] params) throws Throwable;
 }

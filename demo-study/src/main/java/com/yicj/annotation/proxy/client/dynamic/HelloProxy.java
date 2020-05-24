@@ -19,19 +19,21 @@ public class HelloProxy implements Hello {
 
     private HelloInvocationHandler invocationHandler ;
 
-    private Hello target ;
+    private static Method m0;
+    private static Method m1;
 
-    public HelloProxy(Hello target, HelloInvocationHandler invocationHandler){
-        this.target = target ;
+
+    public HelloProxy( HelloInvocationHandler invocationHandler){
         this.invocationHandler = invocationHandler ;
     }
 
     @Override
     public String hello1() {
         try {
-            Method hello1 = this.target.getClass().getMethod("hello1", new Class<?>[]{});
-            return (String) this.invocationHandler.invoke(target, hello1, new Object[]{} );
-        }catch (Throwable var3){
+            return (String) this.invocationHandler.invoke(m0, new Object[]{} );
+        } catch (RuntimeException | Error var2) {
+            throw var2;
+        } catch (Throwable var3) {
             throw new UndeclaredThrowableException(var3);
         }
     }
@@ -39,10 +41,24 @@ public class HelloProxy implements Hello {
     @Override
     public Integer hello2() {
         try {
-            Method hello1 = this.target.getClass().getMethod("hello1", new Class<?>[]{});
-            return (Integer) this.invocationHandler.invoke(target, hello1, new Object[]{} );
-        }catch (Throwable var3){
+            return (Integer) this.invocationHandler.invoke(m1, new Object[]{} );
+        } catch (RuntimeException | Error var2) {
+            throw var2;
+        } catch (Throwable var3) {
             throw new UndeclaredThrowableException(var3);
         }
     }
+
+
+    static {
+        try {
+            m0 = Class.forName("com.yicj.annotation.proxy.client.Hello").getMethod("hello1") ;
+            m1 = Class.forName("com.yicj.annotation.proxy.client.Hello").getMethod("hello2") ;
+        }catch (NoSuchMethodException var2) {
+            throw new NoSuchMethodError(var2.getMessage());
+        } catch (ClassNotFoundException var3) {
+            throw new NoClassDefFoundError(var3.getMessage());
+        }
+    }
+
 }

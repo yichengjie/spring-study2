@@ -1,7 +1,11 @@
 package com.yicj.annotation.proxy.client;
 
+import com.yicj.annotation.proxy.client.component.MyHelloInvocationHandler;
 import com.yicj.annotation.proxy.client.component.MyHelloInvocationHandler2;
 import com.yicj.annotation.proxy.client.dynamic.HelloProxy;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ClassName: Main
@@ -15,14 +19,25 @@ import com.yicj.annotation.proxy.client.dynamic.HelloProxy;
 public class Main {
 
     public static void main(String[] args) {
+        //test1() ;
+        test2() ;
+    }
 
+    public static void test1(){
         Hello hello = new HelloImpl() ;
-
-        HelloProxy helloProxy = new HelloProxy(hello, new MyHelloInvocationHandler2()) ;
-
+        HelloProxy helloProxy = new HelloProxy(new MyHelloInvocationHandler(hello)) ;
         String retObj = helloProxy.hello1();
-
         System.out.println("retObj : " + retObj);
+    }
 
+    public static void test2(){
+        Map<String,Object> map = new HashMap<>() ;
+        map.put("hello1" , "hello1 ret value") ;
+        map.put("hello2", 123) ;
+        HelloProxy helloProxy = new HelloProxy(new MyHelloInvocationHandler2(map)) ;
+        String retObj = helloProxy.hello1();
+        Integer retObj2 = helloProxy.hello2();
+        System.out.println("retObj : " + retObj);
+        System.out.println("retObj2 : " + retObj2);
     }
 }

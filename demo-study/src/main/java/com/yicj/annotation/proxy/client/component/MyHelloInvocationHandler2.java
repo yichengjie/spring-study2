@@ -1,8 +1,8 @@
 package com.yicj.annotation.proxy.client.component;
 
 import com.yicj.annotation.proxy.HelloInvocationHandler;
-
 import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * ClassName: MyHelloInvocationHandler
@@ -14,12 +14,16 @@ import java.lang.reflect.Method;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 public class MyHelloInvocationHandler2 implements HelloInvocationHandler {
+    private final Map<String, Object> memberValues;
+
+    public MyHelloInvocationHandler2(Map<String, Object> memberValues){
+        this.memberValues = memberValues ;
+    }
+
     @Override
-    public Object invoke(Object target, Method method, Object[] params) throws Throwable{
-        long start = System.currentTimeMillis();
-        Object ret = method.invoke(target, params) ;
-        long end = System.currentTimeMillis();
-        System.out.println(method.getName() + " exe take time : " + (end - start));
+    public Object invoke(Method method, Object[] params) throws Throwable{
+        String methodName = method.getName();
+        Object ret = memberValues.get(methodName) ;
         return ret;
     }
 }

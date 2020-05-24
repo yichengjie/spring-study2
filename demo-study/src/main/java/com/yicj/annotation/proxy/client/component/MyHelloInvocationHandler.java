@@ -14,8 +14,15 @@ import java.lang.reflect.Method;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 public class MyHelloInvocationHandler implements HelloInvocationHandler {
+
+    private Object target ;
+
+    public MyHelloInvocationHandler(Object target){
+        this.target = target ;
+    }
+
     @Override
-    public Object invoke(Object target, Method method, Object[] params) throws Throwable{
+    public Object invoke(Method method, Object[] params) throws Throwable{
         System.out.println("----before -------");
         Object ret = method.invoke(target, params) ;
         System.out.println("----before -------");
