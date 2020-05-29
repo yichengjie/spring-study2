@@ -6,6 +6,8 @@ import com.yicj.study.service.solo.HeadLineService;
 import org.simpleframework.core.annotation.Controller;
 import org.simpleframework.core.inject.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ public class HeadLineOperationController {
     private HeadLineService headLineService;
 
 
-    public Result<Boolean> addHeadLine(HeadLine headLine){
+    public Result<Boolean> addHeadLine(HttpServletRequest req, HttpServletResponse resp){
         // TODO: 参数校验以及请求参数转化
         return headLineService.addHeadLine(new HeadLine())  ;
     }
