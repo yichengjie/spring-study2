@@ -13,6 +13,14 @@ import java.lang.reflect.Method;
  */
 public abstract class DefaultAspect {
 
+    /** 
+     * @title: before
+     * @description: TODO(描述)
+     * @params [targetClass, method, args]
+     * @author yicj
+     * @date 2020/5/30 10:48
+     * @return void
+     **/  
     public void before(Class<?> targetClass, Method method, Object [] args) {
 
     }
