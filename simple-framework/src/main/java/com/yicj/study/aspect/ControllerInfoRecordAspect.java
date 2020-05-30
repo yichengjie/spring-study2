@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
  */
 @Slf4j
 @Order(10)
-@Aspect(Controller.class)
+@Aspect(pointcut = "within(com.yicj.study.controller.superadmin.*)")
 public class ControllerInfoRecordAspect extends DefaultAspect {
 
     @Override

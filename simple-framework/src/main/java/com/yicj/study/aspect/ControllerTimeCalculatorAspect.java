@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
  */
 @Slf4j
 @Order
-@Aspect(Controller.class)
+@Aspect(pointcut = "execution(* com.yicj.study.controller.frontend.*.*(..))")
 public class ControllerTimeCalculatorAspect extends DefaultAspect {
     private long timestampCache ;
 

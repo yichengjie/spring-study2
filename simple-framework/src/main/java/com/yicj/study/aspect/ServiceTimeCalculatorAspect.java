@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
  */
 @Slf4j
 @Order
-@Aspect(Service.class)
+@Aspect(pointcut = "within(org.simpleframework.core.annotation.Component)")
 public class ServiceTimeCalculatorAspect extends DefaultAspect {
     private long timestampCache ;
 

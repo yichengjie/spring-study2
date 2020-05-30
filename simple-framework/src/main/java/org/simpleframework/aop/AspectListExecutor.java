@@ -5,12 +5,10 @@ import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 import org.simpleframework.aop.aspect.AspectInfo;
 import org.simpleframework.aop.aspect.DefaultAspect;
+import org.simpleframework.core.util.ValidationUtil;
 
 import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * ClassName: AspectListExecutor
@@ -37,6 +35,9 @@ public class AspectListExecutor implements MethodInterceptor {
         if (isEmpty(sortedAspectInfoList )){
             return methodProxy.invokeSuper(proxy, args);
         }
+
+        this.sortedAspectInfoList = collectAccurateMatchedAspectList(method) ;
+
         Object retObj = null;
         try {
             invokeBeforeAdvices(method, args) ;
@@ -46,6 +47,16 @@ public class AspectListExecutor implements MethodInterceptor {
             invokeAfterThrowingAdvices(method, args, e) ;
         }
         return retObj;
+    }
+
+    private List<AspectInfo> collectAccurateMatchedAspectList(Method method) {
+        List<AspectInfo> retList = new ArrayList<>() ;
+        for (AspectInfo info :this.sortedAspectInfoList){
+            if (info.getPointcutLocator().accurateMatches(method)){
+                retList.add(info) ;
+            }
+        }
+        return retList ;
     }
 
 
