@@ -1,13 +1,11 @@
 package org.simpleframework.core;
 
-import com.yicj.study.controller.DispatcherServlet;
+import org.simpleframework.mvc.DispatcherServlet;
 import com.yicj.study.controller.fronend.MainPageController;
 import com.yicj.study.service.solo.HeadLineService;
 import com.yicj.study.service.solo.impl.HeadLineServiceImpl;
 import org.junit.jupiter.api.*;
 import org.simpleframework.core.annotation.Controller;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

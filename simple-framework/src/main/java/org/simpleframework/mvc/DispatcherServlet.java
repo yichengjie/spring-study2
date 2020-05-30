@@ -1,6 +1,14 @@
-package com.yicj.study.controller;
+package org.simpleframework.mvc;
 
 import lombok.extern.slf4j.Slf4j;
+import org.simpleframework.aop.AspectWeaver;
+import org.simpleframework.core.BeanContainer;
+import org.simpleframework.core.inject.DependencyInjector;
+import org.simpleframework.mvc.processor.RequestProcessor;
+import org.simpleframework.mvc.processor.impl.ControllerRequestProcessor;
+import org.simpleframework.mvc.processor.impl.JspRequestProcessor;
+import org.simpleframework.mvc.processor.impl.PreRequestProcessor;
+import org.simpleframework.mvc.processor.impl.StaticResourceRequestProcessor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ClassName: DispatcherServlet
@@ -36,25 +46,36 @@ import java.io.IOException;
  * 	只会替换servlet容器中内建名为default的servlet，而‘/*’属于路径匹配，并且可以匹配所有的request，
  * 	由于路径匹配的优先级仅此于精确匹配，所以'/*' 会覆盖所有的扩展名匹配，所以默认jsp的servelet就失效了。
  */
-@WebServlet("/")
 @Slf4j
+//@WebServlet("/")
+@WebServlet("/* ")
 // 注意这里不要写成‘/*’，否则会造成死循环请求
 public class DispatcherServlet extends HttpServlet {
 
+    private List<RequestProcessor> processors = new ArrayList<>() ;
+
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String servletPath = req.getServletPath();
-        String method = req.getMethod();
-        log.info("servletPath : {}, method : {}", servletPath, method);
-        this.doGet(req,resp);
+    public void init() throws ServletException {
+        //1. 初始化容器
+        BeanContainer container = BeanContainer.getInstance();
+        container.loadBeans("com.yicj.study");
+        new AspectWeaver().doAop();
+        new DependencyInjector().doIoc();
+        //2. 初始化请求处理器责任链
+        processors.add(new PreRequestProcessor()) ;
+        processors.add(new StaticResourceRequestProcessor()) ;
+        processors.add(new JspRequestProcessor()) ;
+        processors.add(new ControllerRequestProcessor()) ;
     }
 
-    //private Logger log = LoggerFactory.getLogger(this.getClass()) ;
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = "我的简易框架" ;
-        log.debug(name);
-        req.setAttribute("name", name);
-        req.getRequestDispatcher("/WEB-INF/jsp/hello.jsp").forward(req,resp);
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //1. 创建责任链对象实例
+        RequestProcessorChain requestProcessorChain = new RequestProcessorChain(processors.iterator(), req, resp);
+        //2. 通过责任链模式来依次调用请求处理器对请求进行处理
+        requestProcessorChain.doRequestProcessorChain() ;
+        //3. 对处理结果进行渲染
+        requestProcessorChain.doRender() ;
     }
+
 }
