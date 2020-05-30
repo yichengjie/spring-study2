@@ -32,12 +32,10 @@ public class AspectListExecutor implements MethodInterceptor {
 
     @Override
     public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+        this.sortedAspectInfoList = collectAccurateMatchedAspectList(method) ;
         if (isEmpty(sortedAspectInfoList )){
             return methodProxy.invokeSuper(proxy, args);
         }
-
-        this.sortedAspectInfoList = collectAccurateMatchedAspectList(method) ;
-
         Object retObj = null;
         try {
             invokeBeforeAdvices(method, args) ;
@@ -51,6 +49,9 @@ public class AspectListExecutor implements MethodInterceptor {
 
     private List<AspectInfo> collectAccurateMatchedAspectList(Method method) {
         List<AspectInfo> retList = new ArrayList<>() ;
+        if (ValidationUtil.isEmpty(this.sortedAspectInfoList)){
+            return retList ;
+        }
         for (AspectInfo info :this.sortedAspectInfoList){
             if (info.getPointcutLocator().accurateMatches(method)){
                 retList.add(info) ;
