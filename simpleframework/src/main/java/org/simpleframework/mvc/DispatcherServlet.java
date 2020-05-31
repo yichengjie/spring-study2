@@ -57,7 +57,6 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        log.info("--------------init------------------");
         //1. 初始化容器
         BeanContainer container = BeanContainer.getInstance();
         container.loadBeans("com.yicj.study");

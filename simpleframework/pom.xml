@@ -82,8 +82,8 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.6</version>
                     <configuration>
-                        <warSourceDirectory>Webapp</warSourceDirectory>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <warSourceDirectory>webapp</warSourceDirectory>
                     </configuration>
                 </plugin>
 
