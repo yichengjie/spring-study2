@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>simple-framework</artifactId>
+    <artifactId>simpleframework</artifactId>
     <packaging>war</packaging>
 
     <properties>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
-            <version>3.3.0</version>
+            <version>3.2.5</version>
         </dependency>
 
         <dependency>

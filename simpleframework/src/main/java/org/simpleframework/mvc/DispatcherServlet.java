@@ -10,6 +10,7 @@ import org.simpleframework.mvc.processor.impl.JspRequestProcessor;
 import org.simpleframework.mvc.processor.impl.PreRequestProcessor;
 import org.simpleframework.mvc.processor.impl.StaticResourceRequestProcessor;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,15 +57,17 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
+        log.info("--------------init------------------");
         //1. 初始化容器
         BeanContainer container = BeanContainer.getInstance();
         container.loadBeans("com.yicj.study");
         new AspectWeaver().doAop();
         new DependencyInjector().doIoc();
+        ServletContext context  = this.getServletContext();
         //2. 初始化请求处理器责任链
         processors.add(new PreRequestProcessor()) ;
-        processors.add(new StaticResourceRequestProcessor()) ;
-        processors.add(new JspRequestProcessor()) ;
+        processors.add(new StaticResourceRequestProcessor(context)) ;
+        processors.add(new JspRequestProcessor(context)) ;
         processors.add(new ControllerRequestProcessor()) ;
     }
 
