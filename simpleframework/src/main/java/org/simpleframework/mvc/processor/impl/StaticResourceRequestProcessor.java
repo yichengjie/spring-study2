@@ -20,17 +20,17 @@ import javax.servlet.ServletContext;
  */
 @Slf4j
 public class StaticResourceRequestProcessor implements RequestProcessor {
-    public static final String DEFAULT_TOMCAT_SERVLET = "default";
+    public static final String DEFAULT_TOMCAT_SERVLET_NAME = "default";
     public static final String STATIC_RESOURCE_PREFIX = "/static/";
     // tomcat默认请求派发器RequestDispatcher的名称
     private RequestDispatcher defaultDispatcher ;
 
     public StaticResourceRequestProcessor(ServletContext context) {
-        this.defaultDispatcher = context.getNamedDispatcher(DEFAULT_TOMCAT_SERVLET);
+        this.defaultDispatcher = context.getNamedDispatcher(DEFAULT_TOMCAT_SERVLET_NAME);
         if (this.defaultDispatcher == null){
             throw new RuntimeException("There is no default tomcat servlet") ;
         }
-        log.info("The default servlet for static resource is {}", DEFAULT_TOMCAT_SERVLET);
+        log.info("The default servlet for static resource is {}", DEFAULT_TOMCAT_SERVLET_NAME);
     }
 
     @Override

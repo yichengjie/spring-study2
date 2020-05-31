@@ -49,7 +49,7 @@ import java.util.List;
  */
 @Slf4j
 //@WebServlet("/")
-@WebServlet("/* ")
+@WebServlet("/*")
 // 注意这里不要写成‘/*’，否则会造成死循环请求
 public class DispatcherServlet extends HttpServlet {
 
