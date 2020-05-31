@@ -13,6 +13,10 @@ import org.simpleframework.mvc.RequestProcessorChain;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 public class ViewResultRender implements ResultRender {
+    public ViewResultRender(Object result) {
+
+    }
+
     @Override
     public void render(RequestProcessorChain requestProcessorChain) throws Throwable {
 

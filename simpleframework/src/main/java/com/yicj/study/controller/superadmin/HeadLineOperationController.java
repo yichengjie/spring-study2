@@ -5,6 +5,7 @@ import com.yicj.study.entity.dto.Result;
 import com.yicj.study.service.solo.HeadLineService;
 import org.simpleframework.core.annotation.Controller;
 import org.simpleframework.core.inject.annotation.Autowired;
+import org.simpleframework.mvc.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import java.util.List;
  * @version 产品版本信息 yyyy-mm-dd 姓名(邮箱) 修改信息
  */
 @Controller
+@RequestMapping("/headLine")
 public class HeadLineOperationController {
 
     @Autowired
@@ -30,9 +32,11 @@ public class HeadLineOperationController {
         // TODO: 参数校验以及请求参数转化
         return headLineService.addHeadLine(new HeadLine())  ;
     }
-    public Result<Boolean> removeHeadLine(int headLineId){
+    @RequestMapping("/removeHeadLine")
+    public void removeHeadLine(){
         // TODO: 参数校验以及请求参数转化
-        return headLineService.removeHeadLine(1) ;
+        //return headLineService.removeHeadLine(1) ;
+        System.out.println("删除HeadLine...");
     }
     public Result<Boolean> modifyHeadLine(HeadLine headLine){
         // TODO: 参数校验以及请求参数转化

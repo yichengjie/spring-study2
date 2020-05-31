@@ -6,6 +6,8 @@ import org.simpleframework.aop.aspect.AspectInfo;
 import org.simpleframework.aop.aspect.DefaultAspect;
 import org.simpleframework.core.BeanContainer;
 import org.simpleframework.core.util.ValidationUtil;
+import org.simpleframework.mvc.annotation.RequestMapping;
+
 import java.util.*;
 
 /**
@@ -72,10 +74,10 @@ public class AspectWeaver {
 
     private List<AspectInfo> pckAspectInfoList(Set<Class<?>> aspectClassSet) {
         List<AspectInfo> aspectInfos = new ArrayList<>() ;
-        for (Class aspectClass:  aspectClassSet){
+        for (Class<?> aspectClass:  aspectClassSet){
             if (verifyAspect(aspectClass)){
-                Order orderTag = (Order)aspectClass.getAnnotation(Order.class) ;
-                Aspect aspectTag = (Aspect)aspectClass.getAnnotation(Aspect.class);
+                Order orderTag = aspectClass.getAnnotation(Order.class) ;
+                Aspect aspectTag = aspectClass.getAnnotation(Aspect.class);
                 DefaultAspect defaultAspect = (DefaultAspect)beanContainer.getBean(aspectClass) ;
                 // 初始化表达式定位器
                 PointcutLocator pointcutLocator = new PointcutLocator(aspectTag.pointcut()) ;
