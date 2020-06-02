@@ -1,6 +1,8 @@
 package org.simpleframework.util;
 
+import java.lang.annotation.Annotation;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class ValidationUtil {
@@ -40,5 +42,24 @@ public class ValidationUtil {
      */
     public static boolean isEmpty(Map<?, ?> obj) {
         return obj == null || obj.isEmpty();
+    }
+
+
+    /**
+     * 判断类上是否有某个注解
+     * @title: isAnnotationPresent
+     * @description: TODO(描述)
+     * @params [clazz, annoList]
+     * @author yicj
+     * @date 2020/6/2 21:40
+     * @return boolean
+     **/  
+    public static boolean isAnnotationPresent(Class<?> clazz, List<Class<? extends Annotation>> annoList){
+        for (Class<? extends Annotation> annoClazz: annoList){
+            if (clazz.isAnnotationPresent(annoClazz)){
+                return true ;
+            }
+        }
+        return false ;
     }
 }

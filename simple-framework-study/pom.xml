@@ -16,6 +16,7 @@
         <module>simple-framework-core</module>
         <module>simple-framework-aop</module>
         <module>simple-framework-mvc</module>
+        <module>simple-framework-demo</module>
     </modules>
 
     <properties>
