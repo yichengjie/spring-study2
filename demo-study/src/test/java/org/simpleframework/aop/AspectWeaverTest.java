@@ -27,7 +27,7 @@ public class AspectWeaverTest {
         new AspectWeaver().doAop();
         new DependencyInjector().doIoc();
         HeadLineOperationController controller = (HeadLineOperationController)beanContainer.getBean(HeadLineOperationController.class) ;
-        Result<Boolean> result = controller.addHeadLine(null, null);
-        System.out.println(result);
+        //Result<Boolean> result = controller.addHeadLine(null, null);
+        //System.out.println(result);
     }
 }

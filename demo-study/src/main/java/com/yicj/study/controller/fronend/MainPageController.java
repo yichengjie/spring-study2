@@ -8,7 +8,6 @@ import org.simpleframework.core.annotation.Controller;
 import org.simpleframework.core.inject.annotation.Autowired;
 import org.simpleframework.mvc.annotation.RequestMapping;
 import org.simpleframework.mvc.type.RequestMethod;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

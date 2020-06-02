@@ -11,6 +11,8 @@ import com.yicj.annotation.anno.PersonInfoAnnotation;
 public class ImoocCourse {
     @PersonInfoAnnotation(name = "翔仔", language = {"Java","C++","Go","Python","PHP","JS"})
     private String author;
+
+
     @CourseInfoAnnotation(courseName = "校园商铺",
             courseTag = "实战",
             courseProfile = "手把手教会从前端到后端开发多店铺商铺管理系统，"

@@ -8,8 +8,9 @@
     <artifactId>spring-study2</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>simpleframework</module>
+        <module>simple-framework</module>
         <module>pattern-study</module>
+        <module>api-study</module>
         <module>demo-study</module>
     </modules>
      <packaging>pom</packaging>
