@@ -1,4 +1,4 @@
-package com.yicj.study.core;
+package com.yicj.study.test.core;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,7 +27,7 @@ public class BeanContainerTest {
     public void loadBeans(){
         Assertions.assertEquals(false, beanContainer.isLoaded());
         beanContainer.loadBeans("com.yicj.study");
-        Assertions.assertEquals(5, beanContainer.size());
+        Assertions.assertEquals(7, beanContainer.size());
         Assertions.assertEquals(true, beanContainer.isLoaded());
     }
 }

@@ -3,9 +3,11 @@ package org.simpleframework.util;
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,24 +30,31 @@ public class ClassUtil {
      * @param packageName
      * @return 类集合
      */
-    public static Set<Class<?>> extractPackageClass(String packageName) {
-        // 1. 获取到类的加载器
-        ClassLoader classLoader = getClassLoader();
-        // 2. 通过类加载器获取到加载的资源
-        URL url = classLoader.getResource(packageName.replace(".", "/"));
-        if (url == null){
-            log.warn("unable to retrieve anything from package {}" , packageName);
-            return null ;
+    public static Set<Class<?>> extractPackageClass(String packageName)  {
+        try {
+            // 1. 获取到类的加载器
+            ClassLoader classLoader = getClassLoader();
+            // 2. 通过类加载器获取到加载的资源
+            //URL url = classLoader.getResource(packageName.replace(".", "/"));
+            Enumeration<URL> resources = classLoader.getResources(packageName.replace(".", "/"));
+            if (resources == null){
+                log.warn("unable to retrieve anything from package {}" , packageName);
+                return null ;
+            }
+            // 2. 依据不同的资源类型，采用不同的方式获取资源集合
+            Set<Class<?>> classSet = new HashSet<>() ;
+            while (resources.hasMoreElements()){
+                URL url = resources.nextElement();
+                if (url.getProtocol().equalsIgnoreCase(FILE_PROTOCOL)){
+                    //获取目录的绝对路径
+                    File packageDir = new File(url.getPath()) ;
+                    extractClassFile(classSet, packageDir, packageName) ;
+                }
+            }
+            return classSet ;
+        }catch (IOException e) {
+            throw new RuntimeException("扫描包路径"+packageName+"出错 :", e) ;
         }
-        // 2. 依据不同的资源类型，采用不同的方式获取资源集合
-        Set<Class<?>> classSet = null ;
-        if (url.getProtocol().equalsIgnoreCase(FILE_PROTOCOL)){
-            classSet = new HashSet<>() ;
-            //获取目录的绝对路径
-            File packageDir = new File(url.getPath()) ;
-            extractClassFile(classSet, packageDir, packageName) ;
-        }
-        return classSet ;
     }
 
     /**
