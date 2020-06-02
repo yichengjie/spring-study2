@@ -1,4 +1,4 @@
-package org.simpleframework.core.util;
+package org.simpleframework.util;
 
 import java.util.Collection;
 import java.util.Map;

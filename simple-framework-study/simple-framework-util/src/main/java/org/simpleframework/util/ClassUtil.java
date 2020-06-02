@@ -1,7 +1,6 @@
-package org.simpleframework.core.util;
+package org.simpleframework.util;
 
 import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.io.FileFilter;
 import java.lang.reflect.Constructor;

@@ -8,8 +8,8 @@ import org.simpleframework.core.annotation.Component;
 import org.simpleframework.core.annotation.Controller;
 import org.simpleframework.core.annotation.Repository;
 import org.simpleframework.core.annotation.Service;
-import org.simpleframework.core.util.ClassUtil;
-import org.simpleframework.core.util.ValidationUtil;
+import org.simpleframework.util.ClassUtil;
+import org.simpleframework.util.ValidationUtil;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;

@@ -12,6 +12,7 @@
         <module>pattern-study</module>
         <module>api-study</module>
         <module>demo-study</module>
+        <module>simple-framework-study</module>
     </modules>
      <packaging>pom</packaging>
 

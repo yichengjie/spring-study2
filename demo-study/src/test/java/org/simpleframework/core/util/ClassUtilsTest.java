@@ -4,6 +4,7 @@ package org.simpleframework.core.util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.simpleframework.util.ClassUtil;
 
 import java.util.Set;
 

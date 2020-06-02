@@ -3,8 +3,8 @@ package org.simpleframework.core.inject;
 import lombok.extern.slf4j.Slf4j;
 import org.simpleframework.core.BeanContainer;
 import org.simpleframework.core.inject.annotation.Autowired;
-import org.simpleframework.core.util.ClassUtil;
-import org.simpleframework.core.util.ValidationUtil;
+import org.simpleframework.util.ClassUtil;
+import org.simpleframework.util.ValidationUtil;
 
 import java.lang.reflect.Field;
 import java.util.Set;
