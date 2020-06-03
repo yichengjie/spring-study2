@@ -6,6 +6,8 @@ import com.yicj.study.service.combine.HeadLineShopCategoryCombineService;
 import lombok.Getter;
 import org.simpleframework.core.annotation.Controller;
 import org.simpleframework.core.inject.annotation.Autowired;
+import org.simpleframework.mvc.annotation.RequestMapping;
+import org.simpleframework.mvc.type.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @Getter
+@RequestMapping("/main")
 public class MainPageController {
 
     @Autowired("HeadLineShopCategoryCombineServiceImpl")
@@ -30,6 +33,7 @@ public class MainPageController {
         return headLineShopCategoryCombineService.getMainPageInfo() ;
     }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public void throwException(){
 
         throw new RuntimeException("抛出异常测试") ;
