@@ -12,5 +12,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Autowired {
+    // 这里value只能注入Class的name
     String value() default "";
 }
