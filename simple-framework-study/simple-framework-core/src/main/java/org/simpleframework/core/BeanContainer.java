@@ -11,10 +11,7 @@ import org.simpleframework.util.ClassUtil;
 import org.simpleframework.util.ValidationUtil;
 
 import java.lang.annotation.Annotation;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -75,6 +72,127 @@ public class BeanContainer {
             }
         }
         loaded = true ;
+    }
+
+
+    /**
+     * 添加一个class对象及其bean实例
+     * @title: addBean
+     * @description: TODO(描述)
+     * @params [clazz, bean]
+     * @author yicj
+     * @date 2020/6/3 19:42
+     * @return void
+     **/
+    public Object addBean(Class<?> clazz, Object bean){
+        return beanMap.put(clazz, bean) ;
+    }
+
+    /**
+     * 移除一个Ioc容器管理的对象
+     * @title: removeBean
+     * @description: TODO(描述)
+     * @params [clazz]
+     * @author yicj
+     * @date 2020/6/3 19:45
+     * @return 原有的bean的实例，没有则返回null
+     **/  
+    public Object removeBean(Class<?> clazz){
+        return beanMap.remove(clazz) ;
+    }
+
+    /**
+     * 根据Class对象获取Bean实例
+     * @title: getBean
+     * @description: TODO(描述)
+     * @params [clazz]
+     * @author yicj
+     * @date 2020/6/3 19:47
+     * @return java.lang.Object
+     **/  
+    public Object getBean(Class<?> clazz){
+        return beanMap.get(clazz) ;
+    }
+
+
+    /**
+     * 获取容器管理所有Class对象集合
+     * @title: getClasses
+     * @description: TODO(描述)
+     * @params []
+     * @author yicj
+     * @date 2020/6/3 19:48
+     * @return java.util.Set<java.lang.Class<?>>
+     **/  
+    public Set<Class<?>> getClasses(){
+
+        return beanMap.keySet() ;
+    }
+
+    /**
+     * 获取所有Bean集合
+     * @title: getBeans
+     * @description: TODO(描述)
+     * @params []
+     * @author yicj
+     * @date 2020/6/3 19:49
+     * @return java.util.Set<?>
+     **/
+    public Set<Object> getBeans(){
+        return new HashSet<>(beanMap.values()) ;
+    }
+
+
+    /**
+     * 根据注解筛选出Bean的Class集合
+     * @title: getClassesByAnnotation
+     * @description: TODO(描述)
+     * @params [annotation]
+     * @author yicj
+     * @date 2020/6/3 19:56
+     * @return java.util.Set<java.lang.Class<?>>
+     **/  
+    public Set<Class<?>> getClassesByAnnotation(Class<? extends Annotation> annotation) {
+        // 1. 获取beanMap的所有Class对象
+        Set<Class<?>> keySet = getClasses() ;
+        if (ValidationUtil.isEmpty(keySet)){
+            log.warn("nothing in beanMap");
+            return null ;
+        }
+        // 2. 通过注解筛选被注解标记的Class对象，并添加到classSet里
+        Set<Class<?>> classSet = new HashSet<>() ;
+        for (Class<?> clazz: keySet){
+            if (clazz.isAnnotationPresent(annotation)){
+                classSet.add(clazz) ;
+            }
+        }
+        return classSet.isEmpty() ? null : classSet ;
+    }
+
+
+    /**
+     * 通过接口或者父类获取实现类或者子类的Class集合，不包括其本身
+     * @title: getClassesBySuper
+     * @description: TODO(描述)
+     * @params [interfaceOrClass]
+     * @author yicj
+     * @date 2020/6/3 20:09
+     * @return java.util.Set<java.lang.Class<?>>
+     **/
+    public Set<Class<?>> getClassesBySuper(Class<?> interfaceOrClass) {
+        // 1. 获取beanMap的所有Class对象
+        Set<Class<?>> keySet = getClasses() ;
+        if (ValidationUtil.isEmpty(keySet)){
+            return null ;
+        }
+        // 2. 判断keySet里的元素是否是传入的接口或者类的子类，并添加到classSet里
+        Set<Class<?>> classes = new HashSet<>() ;
+        for (Class<?> clazz: keySet){
+            if (interfaceOrClass.isAssignableFrom(clazz) && !clazz.equals(interfaceOrClass)){
+                classes.add(clazz) ;
+            }
+        }
+        return classes.isEmpty() ? null : classes ;
     }
 
 
